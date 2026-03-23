@@ -17,7 +17,7 @@
   header h1 { font-size: 2.2rem; margin-bottom: 10px; }
   header p { font-size: 1.1rem; opacity: 0.85; max-width: 600px; margin: 0 auto; }
 
-  .container { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
 
   .step {
     background: white;
@@ -47,8 +47,8 @@
   .step-header h2 { font-size: 1.15rem; color: #0366d6; }
   .step-body { padding: 22px 24px; }
   .step-body p { line-height: 1.7; margin-bottom: 12px; color: #333; }
-  .step-body ul { padding-left: 20px; margin-bottom: 12px; }
-  .step-body ul li { line-height: 1.8; color: #333; }
+  .step-body ol, .step-body ul { padding-left: 22px; margin-bottom: 12px; }
+  .step-body li { line-height: 1.9; color: #333; }
 
   .tip {
     background: #fffbea;
@@ -60,98 +60,25 @@
     color: #555;
   }
 
-  /* ── Diagram styles ── */
-  .diagram {
-    background: #1b1f23;
-    border-radius: 10px;
-    margin: 18px 0 4px;
-    overflow: hidden;
-    font-family: monospace;
-  }
-  .diagram-bar {
-    background: #2f363d;
-    padding: 8px 14px;
-    display: flex; align-items: center; gap-8: 8px;
-    font-size: 0.78rem; color: #8b949e;
-    border-bottom: 1px solid #444d56;
-  }
-  .dot { width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:5px; }
-  .dot.r { background:#ff5f57; } .dot.y { background:#febc2e; } .dot.g { background:#28c840; }
-  .diagram-content { padding: 16px 18px; color: #e6edf3; font-size: 0.85rem; line-height: 1.7; }
-
-  .mockup {
-    border: 2px solid #d1d5da;
-    border-radius: 10px;
-    margin: 18px 0 4px;
-    overflow: hidden;
-    background: white;
-  }
-  .mockup-bar {
-    background: #f6f8fa;
-    border-bottom: 1px solid #d1d5da;
-    padding: 8px 14px;
-    display: flex; align-items: center; gap: 8px;
-    font-size: 0.8rem; color: #586069;
-  }
-  .mockup-url {
-    background: white;
+  .screenshot {
+    margin: 16px 0 4px;
     border: 1px solid #d1d5da;
-    border-radius: 20px;
-    padding: 3px 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .screenshot img {
+    width: 100%;
+    display: block;
+  }
+  .caption {
     font-size: 0.78rem;
-    color: #0366d6;
-    flex: 1;
-  }
-  .mockup-body { padding: 16px 18px; font-size: 0.85rem; color: #24292e; }
-
-  .gh-btn {
-    display: inline-block;
-    background: #2ea44f;
-    color: white;
-    border-radius: 6px;
-    padding: 5px 14px;
-    font-size: 0.82rem;
-    font-weight: bold;
-    cursor: default;
-  }
-  .gh-btn.blue { background: #0366d6; }
-  .gh-btn.gray { background: #586069; }
-
-  .tab-row {
-    display: flex; gap: 4px; flex-wrap: wrap;
-    border-bottom: 2px solid #e1e4e8;
-    padding-bottom: 0; margin-bottom: 14px;
-  }
-  .tab {
-    padding: 6px 14px; font-size: 0.82rem; border-radius: 6px 6px 0 0;
-    cursor: default; color: #586069;
-  }
-  .tab.active { background: white; border: 2px solid #e1e4e8; border-bottom: 2px solid white; color: #24292e; font-weight: bold; margin-bottom: -2px; }
-  .tab.highlight { background: #fff3cd; border: 1px solid #f0b429; color: #735c0f; font-weight: bold; }
-
-  .form-row { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
-  .form-input {
-    border: 1px solid #d1d5da; border-radius: 6px;
-    padding: 6px 10px; font-size: 0.82rem; color: #24292e; background: white;
-  }
-  .form-label { font-size: 0.82rem; color: #444d56; font-weight: bold; min-width: 80px; }
-
-  .file-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 8px 0; border-bottom: 1px solid #e1e4e8; font-size: 0.83rem;
-  }
-  .file-icon { color: #0366d6; }
-
-  .pages-box {
-    border: 1px solid #28a745;
-    border-radius: 8px;
-    padding: 14px 18px;
-    background: #f0fff4;
-    font-size: 0.85rem;
-    color: #155724;
+    color: #888;
+    text-align: center;
     margin-top: 6px;
+    margin-bottom: 14px;
+    font-style: italic;
   }
-  .pages-box a { color: #0366d6; }
 
   .result-url {
     background: #0366d6;
@@ -165,9 +92,29 @@
     letter-spacing: 0.5px;
   }
 
-  .caption { font-size: 0.78rem; color: #888; text-align: center; margin-top: 4px; }
+  .success-box {
+    background: #f0fff4;
+    border: 1px solid #28a745;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 0.92rem;
+    color: #155724;
+    margin-top: 12px;
+  }
 
   footer { text-align: center; color: #888; font-size: 0.85rem; padding: 20px; }
+
+  /* placeholder style for screenshots we embed via JS */
+  .img-placeholder {
+    background: #f6f8fa;
+    border: 2px dashed #d1d5da;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    color: #586069;
+    font-size: 0.9rem;
+    margin: 16px 0;
+  }
 </style>
 </head>
 <body>
@@ -186,30 +133,14 @@
       <h2>Create a GitHub Account</h2>
     </div>
     <div class="step-body">
-      <p>Go to <strong>github.com</strong> and click <strong>Sign up</strong>. Enter your email, create a password, and choose a username. This username will appear in your final website URL.</p>
-      <div class="mockup">
-        <div class="mockup-bar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <div class="mockup-url">https://github.com/signup</div>
-        </div>
-        <div class="mockup-body">
-          <div style="display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap;">
-            <div style="flex:1;min-width:200px;">
-              <div style="font-size:1.4rem;font-weight:bold;margin-bottom:16px;">Welcome to GitHub</div>
-              <div class="form-row"><span class="form-label">Email</span><span class="form-input">you@email.com</span></div>
-              <div class="form-row"><span class="form-label">Password</span><span class="form-input">••••••••</span></div>
-              <div class="form-row"><span class="form-label">Username</span><span class="form-input" style="color:#2ea44f;">gonzalobalmori ✓</span></div>
-              <div style="margin-top:12px;"><span class="gh-btn">Create account</span></div>
-            </div>
-            <div style="flex:1;min-width:180px;background:#f6f8fa;border-radius:8px;padding:14px;font-size:0.8rem;color:#586069;">
-              <div style="font-weight:bold;margin-bottom:8px;">⚠️ Choose your username carefully</div>
-              Your username becomes part of your website URL:<br><br>
-              <code style="color:#0366d6;">YOUR_USERNAME.github.io/...</code>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="caption">GitHub's sign-up page — enter your details and verify your email to activate your account.</p>
+      <p>Go to <strong>github.com</strong> and click <strong>Sign up</strong>. Enter your email, create a password, and choose a username.</p>
+      <ol>
+        <li>Go to <strong>github.com</strong> and click <strong>"Sign up"</strong></li>
+        <li>Enter your email address and create a password</li>
+        <li>Choose a username — this will appear in your website URL</li>
+        <li>Verify your email to activate the account</li>
+      </ol>
+      <div class="tip">💡 Choose your username carefully — it becomes part of your public website address: <code>YOUR_USERNAME.github.io/...</code></div>
     </div>
   </div>
 
@@ -220,17 +151,21 @@
       <h2>Create a New Repository</h2>
     </div>
     <div class="step-body">
-      <p>A <strong>repository</strong> is like a folder that stores your website files on GitHub. To create one:</p>
-      <ul>
-        <li>Click the <strong>+</strong> icon in the top-right corner</li>
-        <li>Select <strong>"New repository"</strong></li>
-        <li>Give it a name (e.g. <code>my-website</code>)</li>
-        <li>Set visibility to <strong>Public</strong></li>
+      <p>A <strong>repository</strong> is like a folder that stores your website files on GitHub.</p>
+      <ol>
+        <li>Go to your GitHub profile and click the <strong>Repositories</strong> tab</li>
+        <li>Click the green <strong>"New"</strong> button in the top right</li>
+      </ol>
+      <div class="screenshot"><img id="img-step2a" alt="GitHub profile showing Repositories tab and New button"/></div>
+      <p class="caption">Click the "Repositories" tab, then the green "New" button to start creating your repository.</p>
+
+      <ol start="3">
+        <li>Enter a <strong>Repository name</strong> (e.g. <code>html_website_guide</code>)</li>
+        <li>Optionally add a description</li>
+        <li>Set visibility to <strong>Public</strong> — required for free GitHub Pages</li>
         <li>Click <strong>"Create repository"</strong></li>
-      </ul>
-      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCADqBAADASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAgMGAQf/" style="width:100%;border-radius:8px;border:1px solid #d1d5da;" alt="GitHub Repositories page showing the New button"/>
-      <p class="caption">Click <strong>Repositories</strong> tab on your profile, then click the green <strong>New</strong> button (top right) to create a new repository.</p>
-      <div class="tip">💡 The repository name will also appear in your URL: <code>username.github.io/<strong>repo-name</strong>/</code></div>
+      </ol>
+      <div class="tip">💡 The repository name appears in your final URL: <code>username.github.io/<strong>repo-name</strong>/</code></div>
     </div>
   </div>
 
@@ -241,34 +176,17 @@
       <h2>Upload Your HTML File</h2>
     </div>
     <div class="step-body">
-      <p>Inside your new repository, upload your HTML file:</p>
-      <ul>
-        <li>Click <strong>"Add file"</strong> → <strong>"Upload files"</strong></li>
-        <li>Drag and drop your <code>.html</code> file or click to browse</li>
-        <li>Scroll down and click <strong>"Commit changes"</strong></li>
-      </ul>
-      <div class="mockup">
-        <div class="mockup-bar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <div class="mockup-url">github.com/gonzalobalmori/my-website</div>
-        </div>
-        <div class="mockup-body">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
-            <span style="font-weight:bold;">gonzalobalmori / my-website</span>
-            <div style="display:flex;gap:8px;">
-              <span class="gh-btn gray">Add file ▾</span>
-              <span class="gh-btn blue">Code ▾</span>
-            </div>
-          </div>
-          <div style="background:#f6f8fa;border:2px dashed #d1d5da;border-radius:8px;padding:24px;text-align:center;font-size:0.85rem;color:#586069;">
-            📂 Drag & drop your HTML file here<br><br>
-            <span style="background:white;border:1px solid #d1d5da;border-radius:4px;padding:4px 12px;cursor:pointer;">Choose your file</span>
-          </div>
-          <div style="margin-top:12px;font-size:0.82rem;color:#2ea44f;">✓ my-website.html selected</div>
-          <div style="margin-top:10px;"><span class="gh-btn">Commit changes</span></div>
-        </div>
-      </div>
-      <p class="caption">Upload your HTML file using the drag-and-drop area, then commit.</p>
+      <p>After creating the repository, GitHub shows a quick setup page. Upload your file from here:</p>
+      <ol>
+        <li>Click <strong>"uploading an existing file"</strong> on the quick setup page</li>
+      </ol>
+      <div class="screenshot"><img id="img-step3a" alt="Quick setup page with uploading an existing file link"/></div>
+      <p class="caption">On the quick setup page, click "uploading an existing file" to go to the upload screen.</p>
+
+      <ol start="2">
+        <li>Drag and drop your <code>.html</code> file into the upload area, or click <strong>"choose your files"</strong></li>
+        <li>Once uploaded, scroll down and click <strong>"Commit changes"</strong></li>
+      </ol>
     </div>
   </div>
 
@@ -279,33 +197,16 @@
       <h2>Rename the File to <code>index.html</code></h2>
     </div>
     <div class="step-body">
-      <p>GitHub Pages serves <code>index.html</code> as the default page. Rename your file so it loads automatically when someone visits your URL:</p>
-      <ul>
+      <p>GitHub Pages automatically loads a file named <code>index.html</code> as the homepage. Rename your file so visitors don't need to type the filename in the URL.</p>
+      <ol>
         <li>Click on your uploaded file in the repository</li>
-        <li>Click the <strong>pencil ✏️ icon</strong> to edit</li>
-        <li>Change the filename at the top to <code>index.html</code></li>
-        <li>Click <strong>"Commit changes"</strong></li>
-      </ul>
-      <div class="mockup">
-        <div class="mockup-bar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <div class="mockup-url">github.com/gonzalobalmori/my-website/edit/main/my-website.html</div>
-        </div>
-        <div class="mockup-body">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-            <span style="font-size:0.82rem;color:#586069;">Rename file:</span>
-            <span class="form-input" style="text-decoration:line-through;color:#cb2431;">my-website.html</span>
-            <span style="color:#888;">→</span>
-            <span class="form-input" style="color:#2ea44f;font-weight:bold;">index.html ✓</span>
-          </div>
-          <div style="background:#fffbea;border:1px solid #f0b429;border-radius:6px;padding:10px 14px;font-size:0.82rem;color:#735c0f;margin-bottom:12px;">
-            ⚠️ Renaming to <strong>index.html</strong> makes this your homepage
-          </div>
-          <span class="gh-btn">Commit changes</span>
-        </div>
-      </div>
-      <p class="caption">Edit the filename field at the top of the editor — change it to index.html and commit.</p>
-      <div class="tip">💡 If you skip this step, your file is still accessible at the full URL ending in <code>/yourfilename.html</code></div>
+        <li>Click the <strong>pencil ✏️ icon</strong> to open the editor</li>
+        <li>At the top, change the filename to <strong><code>index.html</code></strong></li>
+        <li>Click <strong>"Commit changes…"</strong> in the top right</li>
+      </ol>
+      <div class="screenshot"><img id="img-step4" alt="Renaming file to index.html in GitHub editor"/></div>
+      <p class="caption">Edit the filename field at the top — type "index.html" — then click "Commit changes" to save.</p>
+      <div class="tip">💡 If you skip this step, your site still works but visitors need the full URL ending in <code>/yourfilename.html</code></div>
     </div>
   </div>
 
@@ -316,49 +217,18 @@
       <h2>Enable GitHub Pages</h2>
     </div>
     <div class="step-body">
-      <p>Now tell GitHub to serve your repository as a website:</p>
-      <ul>
-        <li>Go to your repository and click the <strong>Settings</strong> tab</li>
-        <li>In the left sidebar, click <strong>Pages</strong></li>
-        <li>Under "Source", select <strong>Deploy from a branch</strong></li>
-        <li>Set branch to <strong>main</strong> and folder to <strong>/ (root)</strong></li>
+      <p>Now tell GitHub to serve your repository as a live website:</p>
+      <ol>
+        <li>Go to your repository main page and click the <strong>Settings</strong> tab in the top navigation bar</li>
+      </ol>
+      <ol start="2">
+        <li>In the left sidebar, scroll down and click <strong>Pages</strong></li>
+        <li>Under "Source", select <strong>"Deploy from a branch"</strong></li>
+        <li>Set the branch to <strong>main</strong> and folder to <strong>/ (root)</strong></li>
         <li>Click <strong>Save</strong></li>
-      </ul>
-      <div class="mockup">
-        <div class="mockup-bar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <div class="mockup-url">github.com/gonzalobalmori/my-website/settings/pages</div>
-        </div>
-        <div class="mockup-body">
-          <div class="tab-row">
-            <span class="tab">Code</span>
-            <span class="tab">Issues</span>
-            <span class="tab">Pull requests</span>
-            <span class="tab">Actions</span>
-            <span class="tab active highlight">⚙️ Settings</span>
-          </div>
-          <div style="display:flex;gap:20px;flex-wrap:wrap;">
-            <div style="min-width:130px;font-size:0.82rem;border-right:1px solid #e1e4e8;padding-right:16px;">
-              <div style="padding:4px 0;color:#586069;">General</div>
-              <div style="padding:4px 0;color:#586069;">Collaborators</div>
-              <div style="padding:4px 8px;background:#f0f4ff;border-radius:4px;color:#0366d6;font-weight:bold;">📄 Pages</div>
-            </div>
-            <div style="flex:1;min-width:200px;">
-              <div style="font-size:1rem;font-weight:bold;margin-bottom:12px;">GitHub Pages</div>
-              <div style="font-size:0.82rem;margin-bottom:8px;font-weight:bold;">Source</div>
-              <div class="form-row">
-                <span class="form-input">Deploy from a branch ▾</span>
-              </div>
-              <div class="form-row" style="margin-top:8px;">
-                <span class="form-input">main ▾</span>
-                <span class="form-input">/ (root) ▾</span>
-                <span class="gh-btn">Save</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="caption">Settings → Pages → set source to main branch → Save.</p>
+      </ol>
+      <div class="screenshot"><img id="img-step5b" alt="GitHub Pages settings showing branch selection and Save button"/></div>
+      <p class="caption">In Settings → Pages, select "main" branch and "/ (root)", then click Save.</p>
     </div>
   </div>
 
@@ -369,26 +239,15 @@
       <h2>Your Website is Live! 🎉</h2>
     </div>
     <div class="step-body">
-      <p>After about <strong>1–2 minutes</strong>, go back to <strong>Settings → Pages</strong> and you'll see a green banner with your live URL:</p>
-      <div class="mockup">
-        <div class="mockup-bar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <div class="mockup-url">github.com/gonzalobalmori/my-website/settings/pages</div>
-        </div>
-        <div class="mockup-body">
-          <div class="pages-box">
-            ✅ <strong>Your site is live at</strong><br>
-            <a>https://gonzalobalmori.github.io/my-website/</a>
-          </div>
-        </div>
-      </div>
+      <p>After about <strong>1–2 minutes</strong>, go back to <strong>Settings → Pages</strong>. GitHub will show a green banner confirming your site is live.</p>
+      <div class="screenshot"><img id="img-step6" alt="GitHub Pages live site confirmation banner"/></div>
       <p class="caption">GitHub confirms your site is live with a green banner and a clickable link.</p>
-
+      <p>Your public website address will be:</p>
       <div class="result-url">🔗 https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/</div>
-
-      <p>Share this link with anyone — <strong>no GitHub account needed</strong> to view it. It works in any browser, on any device, just like a regular website.</p>
-
-      <div class="tip">✏️ <strong>To update your site:</strong> just edit <code>index.html</code> on GitHub and commit. Changes go live automatically within a minute or two.</div>
+      <div class="success-box">
+        ✅ <strong>Anyone can visit this link</strong> — no GitHub account needed. It works in any browser, on any device, just like a regular website.
+      </div>
+      <div class="tip" style="margin-top:14px;">✏️ <strong>To update your site:</strong> go to your repository, click on <code>index.html</code>, click the pencil icon, make your edits, and commit. Changes go live automatically within a minute or two.</div>
     </div>
   </div>
 
@@ -398,5 +257,24 @@
   Guide created with Claude · GitHub Pages is free for public repositories
 </footer>
 
+<script>
+  // All screenshots are injected here as base64 data URLs
+  // Replace each SCREENSHOT_X_BASE64 with the actual base64 string
+  const screenshots = {
+    "img-step2a": "step2a.png",
+
+    "img-step3a": "step3a.png",
+
+    "img-step4":  "step4.png",
+
+    "img-step5b": "step5b.png",
+    "img-step6":  "step6.png",
+  };
+
+  Object.entries(screenshots).forEach(([id, filename]) => {
+    const el = document.getElementById(id);
+    if (el) el.src = filename;
+  });
+</script>
 </body>
 </html>
