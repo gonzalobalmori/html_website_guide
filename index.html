@@ -5,275 +5,334 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to Publish a Website on GitHub Pages</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #222; }
+:root {
+  --color-primary:          #A100FF;
+  --color-primary-dark:     #7500C0;
+  --color-primary-darkest:  #460073;
+  --color-primary-light:    #C2A3FF;
+  --color-primary-lightest: #E6DCFF;
+  --color-text-primary:     #000000;
+  --color-text-secondary:   #818180;
+  --color-text-muted:       #CFCFCF;
+  --color-bg-light:         #F1F1EF;
+  --color-border:           #CFCFCF;
+  --color-white:            #FFFFFF;
+  --font: 'Graphik', 'Helvetica Neue', Arial, sans-serif;
+  --gradient: linear-gradient(135deg, #460073 0%, #A100FF 60%, #7500C0 100%);
+  --navbar-h: 72px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--color-white); color: var(--color-text-primary); line-height: 1.6; }
 
-  header {
-    background: linear-gradient(135deg, #24292e, #0366d6);
-    color: white;
-    padding: 48px 24px 36px;
-    text-align: center;
-  }
-  header h1 { font-size: 2.2rem; margin-bottom: 10px; }
-  header p { font-size: 1.1rem; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+/* NAVBAR */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--navbar-h);
+  background: var(--color-white); z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; border-bottom: 1px solid var(--color-border);
+}
+.navbar-logo { font-size: 20px; font-weight: 700; color: var(--color-primary); letter-spacing: -.5px; }
+.navbar-right { font-size: 13px; color: var(--color-text-secondary); }
 
-  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+/* HERO */
+.sec-hero { background: var(--gradient); padding: 100px 40px 48px; }
+.sec-hero-inner { max-width: 1200px; margin: 0 auto; }
+.sec-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 12px; }
+.sec-title { font-size: clamp(32px, 3.5vw, 52px); font-weight: 600; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+.sec-desc { font-size: 16px; color: rgba(255,255,255,.8); max-width: 640px; line-height: 1.6; }
 
-  .step {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    margin-bottom: 40px;
-    overflow: hidden;
-  }
-  .step-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 20px 24px;
-    background: #f0f4ff;
-    border-bottom: 2px solid #dce6f8;
-  }
-  .step-number {
-    background: #0366d6;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .step-header h2 { font-size: 1.15rem; color: #0366d6; }
-  .step-body { padding: 22px 24px; }
-  .step-body p { line-height: 1.7; margin-bottom: 12px; color: #333; }
-  .step-body ol, .step-body ul { padding-left: 22px; margin-bottom: 12px; }
-  .step-body li { line-height: 1.9; color: #333; }
+/* LAYOUT */
+.main { padding-top: var(--navbar-h); }
+.container { max-width: 1200px; margin: 0 auto; }
+.subsection { padding: 56px 40px; }
+.sub-white { background: var(--color-white); }
+.sub-gray  { background: var(--color-bg-light); }
+.sub-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--color-text-secondary); margin-bottom: 28px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--color-border);
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
-  .tip {
-    background: #fffbea;
-    border-left: 4px solid #f0b429;
-    border-radius: 6px;
-    padding: 10px 14px;
-    font-size: 0.92rem;
-    margin-top: 12px;
-    color: #555;
-  }
+/* CARDS */
+.acc-card { padding: 28px 24px; border-top: 3px solid var(--color-primary); background: var(--color-white); }
+.sub-gray .acc-card { background: var(--color-bg-light); }
+.acc-card-title { font-size: 15px; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.acc-card-body { font-size: 13.5px; color: var(--color-text-secondary); line-height: 1.65; }
 
-  .screenshot {
-    margin: 16px 0 4px;
-    border: 1px solid #d1d5da;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-  .screenshot img {
-    width: 100%;
-    display: block;
-  }
-  .caption {
-    font-size: 0.78rem;
-    color: #888;
-    text-align: center;
-    margin-top: 6px;
-    margin-bottom: 14px;
-    font-style: italic;
-  }
+/* PROCESS STEPS */
+.proc-steps { display: flex; flex-direction: column; }
+.proc-step { display: flex; gap: 20px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--color-border); }
+.proc-step:first-child { border-top: 1px solid var(--color-border); }
+.proc-num { font-size: 36px; font-weight: 600; color: var(--color-primary); line-height: 1; min-width: 44px; flex-shrink: 0; }
+.proc-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.proc-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
 
-  .result-url {
-    background: #0366d6;
-    color: white;
-    border-radius: 8px;
-    padding: 14px 20px;
-    font-size: 1rem;
-    font-family: monospace;
-    text-align: center;
-    margin: 14px 0;
-    letter-spacing: 0.5px;
-  }
+/* CALLOUTS */
+.callout-info { background: var(--color-primary-lightest); border-left: 3px solid var(--color-primary); padding: 20px 22px; font-size: 13.5px; line-height: 1.65; margin: 14px 0; }
+.callout-warn { background: #FFF9E6; border-left: 3px solid #F5A623; padding: 20px 22px; font-size: 13.5px; line-height: 1.65; margin: 14px 0; }
+.callout-success { background: #F0FFF4; border-left: 3px solid #28A745; padding: 20px 22px; font-size: 13.5px; line-height: 1.65; margin: 14px 0; }
 
-  .success-box {
-    background: #f0fff4;
-    border: 1px solid #28a745;
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-size: 0.92rem;
-    color: #155724;
-    margin-top: 12px;
-  }
+/* BULLETS */
+.blist { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-top: 10px; }
+.blist li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--color-text-secondary); line-height: 1.5; }
+.blist li::before { content: '>'; color: var(--color-primary); font-weight: 700; font-size: 11px; margin-top: 3px; flex-shrink: 0; }
 
-  footer { text-align: center; color: #888; font-size: 0.85rem; padding: 20px; }
+/* SCREENSHOT */
+.screenshot { border: 1px solid var(--color-border); margin: 18px 0 4px; display: block; width: 100%; }
+.screenshot img { width: 100%; display: block; }
+.img-placeholder { background: var(--color-bg-light); border: 2px dashed var(--color-border); padding: 28px; text-align: center; color: var(--color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; margin: 18px 0 4px; }
+.caption { font-size: 11px; color: var(--color-text-muted); text-align: center; margin-top: 6px; margin-bottom: 16px; letter-spacing: .04em; text-transform: uppercase; }
 
-  /* placeholder style for screenshots we embed via JS */
-  .img-placeholder {
-    background: #f6f8fa;
-    border: 2px dashed #d1d5da;
-    border-radius: 8px;
-    padding: 40px;
-    text-align: center;
-    color: #586069;
-    font-size: 0.9rem;
-    margin: 16px 0;
-  }
+/* URL BOX */
+.url-box { background: var(--color-primary-darkest); color: #fff; padding: 18px 24px; font-family: 'Consolas', monospace; font-size: 15px; text-align: center; letter-spacing: .5px; margin: 16px 0; }
+
+/* BADGE */
+.badge { font-size: 9px; font-weight: 700; padding: 3px 8px; letter-spacing: .08em; text-transform: uppercase; display: inline-block; background: var(--color-primary); color: #fff; }
+
+/* FOOTER */
+.page-footer { background: #000; color: #fff; padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; }
+.page-footer-copy { font-size: 12px; color: rgba(255,255,255,.4); }
+.page-footer-logo { font-size: 16px; font-weight: 700; color: var(--color-primary); }
+
+@media (max-width: 768px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .subsection { padding: 36px 20px; }
+  .sec-hero { padding: 100px 20px 36px; }
+  .navbar { padding: 0 20px; }
+}
 </style>
 </head>
 <body>
 
-<header>
-  <h1>🌐 Publish Your Website with GitHub Pages</h1>
-  <p>A step-by-step guide to go from an HTML file to a live, shareable public website — for free.</p>
-</header>
+<nav class="navbar">
+  <span class="navbar-logo">Accenture</span>
+  <span class="navbar-right">How-To Guide &nbsp;·&nbsp; March 2026</span>
+</nav>
 
-<div class="container">
+<div class="main">
+
+  <!-- HERO -->
+  <div class="sec-hero">
+    <div class="sec-hero-inner">
+      <div class="sec-eyebrow">Step-by-step guide</div>
+      <h1 class="sec-title">Publish a Website<br>with GitHub Pages</h1>
+      <p class="sec-desc">From creating a GitHub account to having a live, shareable public URL — for free. No coding experience required.</p>
+    </div>
+  </div>
 
   <!-- STEP 1 -->
-  <div class="step">
-    <div class="step-header">
-      <div class="step-number">1</div>
-      <h2>Create a GitHub Account</h2>
-    </div>
-    <div class="step-body">
-      <p>Go to <strong>github.com</strong> and click <strong>Sign up</strong>. Enter your email, create a password, and choose a username.</p>
-      <ol>
-        <li>Go to <strong>github.com</strong> and click <strong>"Sign up"</strong></li>
-        <li>Enter your email address and create a password</li>
-        <li>Choose a username — this will appear in your website URL</li>
-        <li>Verify your email to activate the account</li>
-      </ol>
-      <div class="tip">💡 Choose your username carefully — it becomes part of your public website address: <code>YOUR_USERNAME.github.io/...</code></div>
+  <div class="subsection sub-white">
+    <div class="container">
+      <p class="sub-label">Step 01 — Create a GitHub Account</p>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13.5px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:16px;">
+            Go to <strong style="color:#000">github.com</strong> and click <strong style="color:#000">Sign up</strong>. Enter your email, create a password, and choose a username.
+          </p>
+          <ul class="blist">
+            <li>Go to <strong style="color:#000">github.com</strong> and click <strong style="color:#000">"Sign up"</strong></li>
+            <li>Enter your email address and create a password</li>
+            <li>Choose a username — this will appear in your website URL</li>
+            <li>Verify your email to activate your account</li>
+          </ul>
+          <div class="callout-info" style="margin-top:20px;">
+            <strong>Choose your username carefully.</strong><br>
+            It becomes part of your public website address:<br>
+            <code style="color:var(--color-primary-darkest);">YOUR_USERNAME.github.io/...</code>
+          </div>
+        </div>
+        <div>
+          <div class="img-placeholder">📸 Screenshot: GitHub sign-up page</div>
+          <p class="caption">GitHub's sign-up page — enter your details and verify your email.</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- STEP 2 -->
-  <div class="step">
-    <div class="step-header">
-      <div class="step-number">2</div>
-      <h2>Create a New Repository</h2>
-    </div>
-    <div class="step-body">
-      <p>A <strong>repository</strong> is like a folder that stores your website files on GitHub.</p>
-      <ol>
-        <li>Go to your GitHub profile and click the <strong>Repositories</strong> tab</li>
-        <li>Click the green <strong>"New"</strong> button in the top right</li>
-      </ol>
-      <div class="screenshot"><img id="img-step2a" alt="GitHub profile showing Repositories tab and New button"/></div>
-      <p class="caption">Click the "Repositories" tab, then the green "New" button to start creating your repository.</p>
-
-      <ol start="3">
-        <li>Enter a <strong>Repository name</strong> (e.g. <code>html_website_guide</code>)</li>
-        <li>Optionally add a description</li>
-        <li>Set visibility to <strong>Public</strong> — required for free GitHub Pages</li>
-        <li>Click <strong>"Create repository"</strong></li>
-      </ol>
-      <div class="tip">💡 The repository name appears in your final URL: <code>username.github.io/<strong>repo-name</strong>/</code></div>
+  <div class="subsection sub-gray">
+    <div class="container">
+      <p class="sub-label">Step 02 — Create a New Repository</p>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13.5px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:16px;">
+            A <strong style="color:#000">repository</strong> is like a folder that stores your website files on GitHub.
+          </p>
+          <ul class="blist">
+            <li>Go to your GitHub profile and click the <strong style="color:#000">Repositories</strong> tab</li>
+            <li>Click the green <strong style="color:#000">"New"</strong> button in the top right</li>
+          </ul>
+          <div class="screenshot"><img id="img-step2a" alt="Repositories page with New button"/></div>
+          <p class="caption">Click "Repositories" tab, then the green "New" button.</p>
+          <ul class="blist" style="margin-top:16px;">
+            <li>Enter a <strong style="color:#000">Repository name</strong> (e.g. <code>my-website</code>)</li>
+            <li>Set visibility to <strong style="color:#000">Public</strong> — required for free GitHub Pages</li>
+            <li>Click <strong style="color:#000">"Create repository"</strong></li>
+          </ul>
+          <div class="callout-warn" style="margin-top:16px;">
+            <strong>The repository name appears in your final URL:</strong><br>
+            <code>username.github.io/<strong>repo-name</strong>/</code>
+          </div>
+        </div>
+        <div>
+          <div class="screenshot"><img id="img-step2b" alt="Create new repository form"/></div>
+          <p class="caption">Fill in the repo name, set it to Public, and click "Create repository".</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- STEP 3 -->
-  <div class="step">
-    <div class="step-header">
-      <div class="step-number">3</div>
-      <h2>Upload Your HTML File</h2>
-    </div>
-    <div class="step-body">
-      <p>After creating the repository, GitHub shows a quick setup page. Upload your file from here:</p>
-      <ol>
-        <li>Click <strong>"uploading an existing file"</strong> on the quick setup page</li>
-      </ol>
-      <div class="screenshot"><img id="img-step3a" alt="Quick setup page with uploading an existing file link"/></div>
-      <p class="caption">On the quick setup page, click "uploading an existing file" to go to the upload screen.</p>
-
-      <ol start="2">
-        <li>Drag and drop your <code>.html</code> file into the upload area, or click <strong>"choose your files"</strong></li>
-        <li>Once uploaded, scroll down and click <strong>"Commit changes"</strong></li>
-      </ol>
+  <div class="subsection sub-white">
+    <div class="container">
+      <p class="sub-label">Step 03 — Upload Your HTML File</p>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13.5px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:16px;">
+            After creating the repository, GitHub shows a quick setup page. Upload your file from here.
+          </p>
+          <ul class="blist">
+            <li>Click <strong style="color:#000">"uploading an existing file"</strong> on the quick setup page</li>
+          </ul>
+          <div class="screenshot"><img id="img-step3a" alt="Quick setup page with uploading an existing file link"/></div>
+          <p class="caption">Click "uploading an existing file" to go to the upload screen.</p>
+          <ul class="blist" style="margin-top:16px;">
+            <li>Drag and drop your <code>.html</code> file into the upload area, or click <strong style="color:#000">"choose your files"</strong></li>
+            <li>Scroll down and click <strong style="color:#000">"Commit changes"</strong></li>
+          </ul>
+        </div>
+        <div>
+          <div class="img-placeholder">📸 Screenshot: Drag & drop upload area</div>
+          <p class="caption">Drag your HTML file into the box, then click "Commit changes".</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- STEP 4 -->
-  <div class="step">
-    <div class="step-header">
-      <div class="step-number">4</div>
-      <h2>Rename the File to <code>index.html</code></h2>
-    </div>
-    <div class="step-body">
-      <p>GitHub Pages automatically loads a file named <code>index.html</code> as the homepage. Rename your file so visitors don't need to type the filename in the URL.</p>
-      <ol>
-        <li>Click on your uploaded file in the repository</li>
-        <li>Click the <strong>pencil ✏️ icon</strong> to open the editor</li>
-        <li>At the top, change the filename to <strong><code>index.html</code></strong></li>
-        <li>Click <strong>"Commit changes…"</strong> in the top right</li>
-      </ol>
-      <div class="screenshot"><img id="img-step4" alt="Renaming file to index.html in GitHub editor"/></div>
-      <p class="caption">Edit the filename field at the top — type "index.html" — then click "Commit changes" to save.</p>
-      <div class="tip">💡 If you skip this step, your site still works but visitors need the full URL ending in <code>/yourfilename.html</code></div>
+  <div class="subsection sub-gray">
+    <div class="container">
+      <p class="sub-label">Step 04 — Rename the File to index.html</p>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13.5px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:16px;">
+            GitHub Pages serves <code>index.html</code> as the default homepage. Rename your file so it loads automatically when someone visits your URL.
+          </p>
+          <ul class="blist">
+            <li>Click on your uploaded file in the repository</li>
+            <li>Click the <strong style="color:#000">pencil ✏️ icon</strong> to open the editor</li>
+            <li>At the top, change the filename to <strong style="color:#000"><code>index.html</code></strong></li>
+            <li>Click <strong style="color:#000">"Commit changes…"</strong> in the top right</li>
+          </ul>
+          <div class="callout-info" style="margin-top:16px;">
+            If you skip this step, your site still works but visitors need the full URL ending in <code>/yourfilename.html</code>
+          </div>
+        </div>
+        <div>
+          <div class="screenshot"><img id="img-step4" alt="Renaming file to index.html"/></div>
+          <p class="caption">Edit the filename field at the top — type "index.html" — then commit.</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- STEP 5 -->
-  <div class="step">
-    <div class="step-header">
-      <div class="step-number">5</div>
-      <h2>Enable GitHub Pages</h2>
-    </div>
-    <div class="step-body">
-      <p>Now tell GitHub to serve your repository as a live website:</p>
-      <ol>
-        <li>Go to your repository main page and click the <strong>Settings</strong> tab in the top navigation bar</li>
-      </ol>
-      <ol start="2">
-        <li>In the left sidebar, scroll down and click <strong>Pages</strong></li>
-        <li>Under "Source", select <strong>"Deploy from a branch"</strong></li>
-        <li>Set the branch to <strong>main</strong> and folder to <strong>/ (root)</strong></li>
-        <li>Click <strong>Save</strong></li>
-      </ol>
-      <div class="screenshot"><img id="img-step5b" alt="GitHub Pages settings showing branch selection and Save button"/></div>
-      <p class="caption">In Settings → Pages, select "main" branch and "/ (root)", then click Save.</p>
+  <div class="subsection sub-white">
+    <div class="container">
+      <p class="sub-label">Step 05 — Enable GitHub Pages</p>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13.5px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:16px;">
+            Tell GitHub to serve your repository as a live website.
+          </p>
+          <ul class="blist">
+            <li>Go to your repository and click the <strong style="color:#000">Settings</strong> tab in the top navigation bar</li>
+            <li>In the left sidebar, scroll down and click <strong style="color:#000">Pages</strong></li>
+            <li>Under "Source", select <strong style="color:#000">"Deploy from a branch"</strong></li>
+            <li>Set branch to <strong style="color:#000">main</strong> and folder to <strong style="color:#000">/ (root)</strong></li>
+            <li>Click <strong style="color:#000">Save</strong></li>
+          </ul>
+        </div>
+        <div>
+          <div class="screenshot"><img id="img-step5b" alt="Settings → Pages → branch selection"/></div>
+          <p class="caption">Settings → Pages → select "main" branch → Save.</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- STEP 6 -->
-  <div class="step">
-    <div class="step-header">
-      <div class="step-number">6</div>
-      <h2>Your Website is Live! 🎉</h2>
-    </div>
-    <div class="step-body">
-      <p>After about <strong>1–2 minutes</strong>, go back to <strong>Settings → Pages</strong>. GitHub will show a green banner confirming your site is live.</p>
-      <div class="screenshot"><img id="img-step6" alt="GitHub Pages live site confirmation banner"/></div>
-      <p class="caption">GitHub confirms your site is live with a green banner and a clickable link.</p>
-      <p>Your public website address will be:</p>
-      <div class="result-url">🔗 https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/</div>
-      <div class="success-box">
-        ✅ <strong>Anyone can visit this link</strong> — no GitHub account needed. It works in any browser, on any device, just like a regular website.
+  <div class="subsection sub-gray">
+    <div class="container">
+      <p class="sub-label">Step 06 — Your Website is Live</p>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13.5px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:16px;">
+            After about <strong style="color:#000">1–2 minutes</strong>, go back to <strong style="color:#000">Settings → Pages</strong>. GitHub will show a green banner with your live URL.
+          </p>
+          <div class="screenshot"><img id="img-step6" alt="GitHub Pages live confirmation banner"/></div>
+          <p class="caption">GitHub confirms your site is live with a green banner and clickable link.</p>
+          <p style="font-size:13.5px;color:var(--color-text-secondary);line-height:1.65;margin-top:16px;">Your public website address will be:</p>
+          <div class="url-box">🔗 https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/</div>
+          <div class="callout-success">
+            <strong>Anyone can visit this link</strong> — no GitHub account needed. It works in any browser, on any device, just like any regular website.
+          </div>
+          <div class="callout-info" style="margin-top:12px;">
+            <strong>To update your site:</strong> go to your repository, click <code>index.html</code>, click the pencil icon, make your edits, and commit. Changes go live automatically within a minute or two.
+          </div>
+        </div>
+        <div>
+          <div class="acc-card" style="margin-top:0;">
+            <div class="acc-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Quick Summary
+            </div>
+            <div class="acc-card-body">
+              <ul class="blist">
+                <li>Create a GitHub account at github.com</li>
+                <li>Create a <strong style="color:#000">Public</strong> repository</li>
+                <li>Upload your HTML file</li>
+                <li>Rename it to <code>index.html</code></li>
+                <li>Enable GitHub Pages in Settings</li>
+                <li>Share your live URL with anyone!</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="tip" style="margin-top:14px;">✏️ <strong>To update your site:</strong> go to your repository, click on <code>index.html</code>, click the pencil icon, make your edits, and commit. Changes go live automatically within a minute or two.</div>
     </div>
   </div>
 
-</div>
+</div><!-- /main -->
 
-<footer>
-  Guide created with Claude · GitHub Pages is free for public repositories
+<footer class="page-footer">
+  <span class="page-footer-copy">Guide created with Claude · GitHub Pages is free for public repositories</span>
+  <span class="page-footer-logo">Accenture</span>
 </footer>
 
 <script>
-  // All screenshots are injected here as base64 data URLs
-  // Replace each SCREENSHOT_X_BASE64 with the actual base64 string
   const screenshots = {
     "img-step2a": "step2a.png",
-
+    "img-step2b": "step2b.png",
     "img-step3a": "step3a.png",
-
     "img-step4":  "step4.png",
-
     "img-step5b": "step5b.png",
     "img-step6":  "step6.png",
   };
 
   Object.entries(screenshots).forEach(([id, filename]) => {
     const el = document.getElementById(id);
-    if (el) el.src = filename;
+    if (el) {
+      el.src = filename;
+      el.onerror = () => {
+        const ph = document.createElement("div");
+        ph.className = "img-placeholder";
+        ph.textContent = "📸 " + el.alt;
+        el.parentNode.replaceChild(ph, el);
+      };
+    }
   });
 </script>
 </body>
